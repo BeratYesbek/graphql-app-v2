@@ -1,0 +1,69 @@
+scalar Date
+
+type Mutation {
+    createAuthor(author:AuthorCreateRequest): AuthorReadRequest
+    createCategory(category: CategoryCreateRequest): CategoryReadRequest
+
+    createBook(book:BookCreateRequest): BookReadRequest
+}
+
+type Query {
+    findAuthorById(id:Int): AuthorReadRequest
+    findBookById(id: Int): BookReadRequest
+}
+
+input AuthorCreateRequest {
+    name : String
+    age: Int
+    reputation: Reputation
+}
+
+
+type AuthorReadRequest {
+    id: ID
+    name: String
+    reputation: Reputation
+    createdAt: Date
+}
+input BookCreateRequest {
+    name: String
+    forward : String
+    price: Float
+    releaseDate: Int
+    popularity: Popularity
+    pageSize: Int
+}
+type BookReadRequest {
+    id : ID
+    name: String
+    forward : String
+    price: Float
+    releaseDate: Int
+    popularity: Popularity
+    pageSize: Int
+    createdAt: Date
+}
+
+
+input CategoryCreateRequest {
+    name: String
+}
+type CategoryReadRequest {
+    id: ID
+    name: String
+    createdAt: Date
+}
+
+enum Reputation {
+    LOW,
+    MEDIUM,
+    HIGH,
+    VERY_HIGH
+}
+
+enum Popularity {
+    LOW,
+    MEDIUM,
+    HIGH,
+    VERY_HIGH
+}

@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  graphql_db:
+    image: postgres
+    container_name: graphql_db
+    read_only: true
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=user123
+      - POSTGRES_DB=graphqlDb
+    expose:
+      - "54322"
+    ports:
+      - "54322:54322"
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/postgresql
+    volumes:
+      - graphql_volume:/var/lib/postgresql/data
+    command: -p 54322
+
+volumes:
+  graphql_volume:
